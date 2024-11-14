@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageId>DotNetBestFriend</PackageId>
+    <Version>4.0.0</Version>
+    <Authors>Laurence Lam</Authors>
+    <Company>Lam Technologies LTD</Company>
+    <PackageDescription>Convenient extension methods for developers who are awesome enough to target their apps for .NET 8 and beyond</PackageDescription>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageVersion>4.0.0</PackageVersion>
+    <Copyright>Lam Technologies LTD</Copyright>
+    <Owners>Lam Technologies LTD</Owners>
+    <PackageReleaseNotes>Added support for .NET 9. Dropped support for .NET 6 and 7.</PackageReleaseNotes>
+    <Summary>A bunch of programming tools for quick and safe data validation and manipulation</Summary>
+    <Title>DotNetBestFriend</Title>
+    <Description>The ultimate toolset for .NET Developers</Description>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <LangVersion>latest</LangVersion>
+    <DebugSymbols>true</DebugSymbols>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\net9.0\DotNetBestFriend.xml</DocumentationFile>
+  </PropertyGroup>
+</Project>
