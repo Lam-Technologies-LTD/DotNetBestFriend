@@ -24,6 +24,8 @@ I've decided to omit these because ideally we should be keeping on top of the up
 
 Framework and Core has now been merged into a single unified platform as .NET. The point of this is to unite the technologies under one ultimate framework so developers can essentially build what they want using one platform instead of a horrific mix of technologies, which can get expensive to maintain as newer technologies emerges.
 
+.NET 5 (No Longer Supported) was the first of the rebranded .NET, which dropped the "Core" from the name and began the huge task of unifying all the existing tech. At the time it was a huge improvement over the previous .NET Core 3.1 by providing faster code execution and offering more applications to build from.
+
 .NET 6 (No Longer Supported) is the long term supported iteration of the .NET technologies because MS has planned for every even number to be supported long term with every other year to be a minor increment of features. Iterates on .NET 5 features by increasing processing time, introducing .NET MAUI (Xamarin's replacement), WinForms support and language specific features such as DateOnly.
 
 .NET 7 (No Longer Supported) was launched on 8th November 2022 with performance improvements, native AOT compilation, improved ARM and HTTP/3 support.
