@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>DotNetBestFriend</id>
-        <version>4.0.0</version>
+        <version>4.0.1</version>
         <authors>Laurence Lam</authors>
         <description>A set of convenient method extensions for building .NET 8+ apps.</description>
         <language>en-GB</language>

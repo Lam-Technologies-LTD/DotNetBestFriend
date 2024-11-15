@@ -21,7 +21,15 @@ public static class ValueTypeHelpers
 
     public static bool IsValidAndMatches([NotNullWhen(true)] this int? value, int number) => value.GetValueOrDefault().Equals(number);
 
-    public static bool IsValidAndMatches([NotNullWhen(true)] this int? value, string number) => value.GetValueOrDefault().Equals(number.ToGuid());
+    public static bool IsValidAndMatches([NotNullWhen(true)] this int? value, string number) 
+    { 
+        if (!int.TryParse(number, out var parsedValue))
+        {
+            return false;
+        }
+
+        return value.GetValueOrDefault().Equals(parsedValue);
+    }
     #endregion
 
     #region Guid
@@ -33,7 +41,15 @@ public static class ValueTypeHelpers
 
     public static bool IsValidAndMatches([NotNullWhen(true)] this Guid? value, Guid matching) => value.GetValueOrDefault().Equals(matching);
 
-    public static bool IsValidAndMatches([NotNullWhen(true)] this Guid? value, string matching) => value.GetValueOrDefault().Equals(matching.ToGuid());
+    public static bool IsValidAndMatches([NotNullWhen(true)] this Guid? value, string matching) 
+    {
+        if (!Guid.TryParse(matching, out var parsedValue))
+        {
+            return false;
+        }
+
+        return value.GetValueOrDefault().Equals(parsedValue);
+    }
     #endregion
 
     #region Double
@@ -53,7 +69,15 @@ public static class ValueTypeHelpers
 
     public static bool IsValidAndMatches([NotNullWhen(true)] this double? value, double number) => value.GetValueOrDefault().Equals(number);
 
-    public static bool IsValidAndMatches([NotNullWhen(true)] this double? value, string number) => value.GetValueOrDefault().Equals(number.ToDouble());
+    public static bool IsValidAndMatches([NotNullWhen(true)] this double? value, string number) 
+    {
+        if (!double.TryParse(number, out var parsedValue))
+        {
+            return false;
+        }
+
+        return value.GetValueOrDefault().Equals(parsedValue);
+    }
     #endregion
 
     #region Float
@@ -73,7 +97,15 @@ public static class ValueTypeHelpers
 
     public static bool IsValidAndMatches([NotNullWhen(true)] this float? value, float number) => value.GetValueOrDefault().Equals(number);
 
-    public static bool IsValidAndMatches([NotNullWhen(true)] this float? value, string number) => value.GetValueOrDefault().Equals(number.ToFloat());
+    public static bool IsValidAndMatches([NotNullWhen(true)] this float? value, string number)
+    {
+        if (!float.TryParse(number, out var parsedValue))
+        {
+            return false;
+        }
+
+        return value.GetValueOrDefault().Equals(parsedValue);
+    }
     #endregion
 
     #region Boolean
@@ -99,7 +131,15 @@ public static class ValueTypeHelpers
 
     public static bool IsValidAndMatches([NotNullWhen(true)] this decimal? value, decimal number) => value.GetValueOrDefault().Equals(number);
 
-    public static bool IsValidAndMatches([NotNullWhen(true)] this decimal? value, string number) => value.GetValueOrDefault().Equals(number.ToDecimal());
+    public static bool IsValidAndMatches([NotNullWhen(true)] this decimal? value, string number)
+    {
+        if (!decimal.TryParse(number, out var parsedValue))
+        {
+            return false;
+        }
+
+        return value.GetValueOrDefault().Equals(parsedValue);
+    }
 
     public static decimal RoundToNearest(this decimal value, int places = 2) => Math.Round(value, places);
 
@@ -131,7 +171,15 @@ public static class ValueTypeHelpers
 
     public static bool IsValidAndMatches([NotNullWhen(true)] this long? value, long number) => value.GetValueOrDefault().Equals(number);
 
-    public static bool IsValidAndMatches([NotNullWhen(true)] this long? value, string number) => value.GetValueOrDefault().Equals(number.ToLong());
+    public static bool IsValidAndMatches([NotNullWhen(true)] this long? value, string number)
+    {
+        if (!long.TryParse(number, out var parsedValue))
+        {
+            return false;
+        }
+
+        return value.GetValueOrDefault().Equals(parsedValue);
+    }
     #endregion
 
     #region Byte
@@ -151,7 +199,15 @@ public static class ValueTypeHelpers
 
     public static bool IsValidAndMatches([NotNullWhen(true)] this byte? value, byte number) => value.GetValueOrDefault().Equals(number);
 
-    public static bool IsValidAndMatches([NotNullWhen(true)] this byte? value, string number) => value.GetValueOrDefault().Equals(number.ToByte());
+    public static bool IsValidAndMatches([NotNullWhen(true)] this byte? value, string number)
+    {
+        if (!byte.TryParse(number, out var parsedValue))
+        {
+            return false;
+        }
+
+        return value.GetValueOrDefault().Equals(parsedValue);
+    }
     #endregion
 
     #region SByte
@@ -171,7 +227,15 @@ public static class ValueTypeHelpers
 
     public static bool IsValidAndMatches([NotNullWhen(true)] this sbyte? value, sbyte number) => value.GetValueOrDefault().Equals(number);
 
-    public static bool IsValidAndMatches([NotNullWhen(true)] this sbyte? value, string number) => value.GetValueOrDefault().Equals(number.ToSbyte());
+    public static bool IsValidAndMatches([NotNullWhen(true)] this sbyte? value, string number)
+    {
+        if (!sbyte.TryParse(number, out var parsedValue))
+        {
+            return false;
+        }
+
+        return value.GetValueOrDefault().Equals(parsedValue);
+    }
     #endregion
 
     #region Ushort
@@ -191,7 +255,15 @@ public static class ValueTypeHelpers
 
     public static bool IsValidAndMatches([NotNullWhen(true)] this ushort? value, ushort number) => value.GetValueOrDefault().Equals(number);
 
-    public static bool IsValidAndMatches([NotNullWhen(true)] this ushort? value, string number) => value.GetValueOrDefault().Equals(number.ToUshort());
+    public static bool IsValidAndMatches([NotNullWhen(true)] this ushort? value, string number)
+    {
+        if (!ushort.TryParse(number, out var parsedValue))
+        {
+            return false;
+        }
+
+        return value.GetValueOrDefault().Equals(parsedValue);
+    }
     #endregion
 
     #region Uint
@@ -211,7 +283,15 @@ public static class ValueTypeHelpers
 
     public static bool IsValidAndMatches([NotNullWhen(true)] this uint? value, uint number) => value.GetValueOrDefault().Equals(number);
 
-    public static bool IsValidAndMatches([NotNullWhen(true)] this uint? value, string number) => value.GetValueOrDefault().Equals(number.ToUint());
+    public static bool IsValidAndMatches([NotNullWhen(true)] this uint? value, string number)
+    {
+        if (!uint.TryParse(number, out var parsedValue))
+        {
+            return false;
+        }
+
+        return value.GetValueOrDefault().Equals(parsedValue);
+    }
     #endregion
 
     #region Ulong
@@ -231,6 +311,14 @@ public static class ValueTypeHelpers
 
     public static bool IsValidAndMatches([NotNullWhen(true)] this ulong? value, ulong number) => value.GetValueOrDefault().Equals(number);
 
-    public static bool IsValidAndMatches([NotNullWhen(true)] this ulong? value, string number) => value.GetValueOrDefault().Equals(number.ToUlong());
+    public static bool IsValidAndMatches([NotNullWhen(true)] this ulong? value, string number)
+    {   
+        if (!ulong.TryParse(number, out var parsedValue))
+        {
+            return false;
+        }
+
+        return value.GetValueOrDefault().Equals(parsedValue);
+    }
     #endregion
 }
