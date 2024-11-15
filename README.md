@@ -36,7 +36,7 @@ Framework and Core has now been merged into a single unified platform as .NET. T
 
 # The purpose of this package
 
-The purpose of this package is to provide a set of simple extension methods for .NET 6 and 7+ developers. 
+The purpose of this package is to provide a set of simple extension methods for .NET 8 & 9 developers. 
 
 The library offers convenience for small little coding nuisances by preventing some very common null errors that developers often forget to implement because Microsoft has yet to add these null checks into each of the 3 supported languages themselves or in the Common Intermediate Language.
 
@@ -80,7 +80,7 @@ It's like trying ask your unborn baby to help you with your tax returns, the bab
 So what exactly can be done about this? You can do it this way...
 
 ```
-List<string> test = null;
+List<string>? test = null;
 
 if (test != null && test.Any()) // << OK!
 {
@@ -93,7 +93,7 @@ But then you'd have to write that if statement every time you create a list and 
 However, a sensible developer would have done this...
 
 ```
-List<string> test = new List<string>(); // << Great!
+var test = new List<string>(); // << Great!
 
 if (test.Any()) // << OK!
 {
@@ -108,7 +108,7 @@ Some developers, myself included, prefer to return null if something has gone se
 You can't use a null-conditional on the object because it'll result in a syntax error because you're not allowed to use a method for a nullable reference, just the properties only.
 
 ```
-List<string> test = null;
+List<string>? test = null;
 
 if (test?.Any()) // << Syntax Error!
 {
@@ -124,14 +124,14 @@ if ((bool)test?.Any()) // << Can't do it that way either, believe me I've tried!
 You can do it this way...but you won't be able to do that with IEnumerable or ICollection
 
 ```
-List<string> test = null;
+List<string>? test = null;
 
 if (test?.Count > 0) // << That's fine
 {
   
 }
 
-IEnumerable<string> test2 = null;
+IEnumerable<string>? test2 = null;
 
 if (test2?.Count() > 0) // << Syntax Error!
 {
@@ -144,7 +144,7 @@ OR...you can use an IEnumerable extension method I've created to check if the co
 Anything that derives from IEnumerable (such as a List, IList, ICollection, IOrderedEnumerable) can use that extension method too, further proving the main philosophy of building your dev tools before building your app.
 
 ```
-List<string> test = null;
+List<string>? test = null;
 
 if (test.IsNotNullOrEmpty()) // << Will not throw an error! xD
 {
