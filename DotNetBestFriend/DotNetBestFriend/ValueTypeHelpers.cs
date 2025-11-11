@@ -416,7 +416,7 @@ public static class ValueTypeHelpers
     /// Checks if nullable long is not null and matches or is below the max value
     /// </summary>
     /// <param name="value">Nullable Long</param>
-    /// <param name="max">Number must be less than</param>
+    /// <param name="min">Number must be less than</param>
     /// <returns>True if the value is not null and matches or is below the max value</returns>
     public static bool IsValidAndEqualsOrBelow([NotNullWhen(true)] this long? value, long min) => value.GetValueOrDefault() <= min;
 
