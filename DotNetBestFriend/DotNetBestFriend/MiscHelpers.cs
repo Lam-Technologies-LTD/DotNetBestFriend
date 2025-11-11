@@ -27,7 +27,7 @@ public static class MiscHelpers
                 return retVal;
             }
 
-            if (input.Length == default(long))
+            if (input.Length == default)
             {
                 if (throwOnError)
                 {

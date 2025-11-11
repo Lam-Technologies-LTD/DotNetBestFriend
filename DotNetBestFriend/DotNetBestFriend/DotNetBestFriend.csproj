@@ -1,18 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>DotNetBestFriend</PackageId>
-    <Version>4.0.1</Version>
+    <Version>5.0.0</Version>
     <Authors>Laurence Lam</Authors>
     <Company>Lam Technologies LTD</Company>
     <PackageDescription>Convenient extension methods for developers who are awesome enough to target their apps for .NET 8 and beyond</PackageDescription>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageVersion>4.0.1</PackageVersion>
+    <PackageVersion>5.0.0</PackageVersion>
     <Copyright>Lam Technologies LTD</Copyright>
     <Owners>Lam Technologies LTD</Owners>
-    <PackageReleaseNotes>Fixed a bug with the IsValidAndMatches method inside the ValueTypeHelpers where zero or empty guid will pass if the string is invalid.</PackageReleaseNotes>
+    <PackageReleaseNotes>Upgraded to .NET 10, added missing method summaries and added minor DateTime extensions</PackageReleaseNotes>
     <Summary>A bunch of programming tools for quick and safe data validation and manipulation</Summary>
     <Title>DotNetBestFriend</Title>
     <Description>The ultimate toolset for .NET Developers</Description>

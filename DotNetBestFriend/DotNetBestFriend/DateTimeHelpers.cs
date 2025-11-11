@@ -380,6 +380,27 @@ public static class DateTimeHelpers
     public static string Get12HourTimeOnlyString(this DateTime value) => value.ToString("hh:mm:ss tt");
 
     /// <summary>
+    /// Returns the date in a formatted string without any spaces
+    /// </summary>
+    /// <param name="value">A <see cref="T:System.DateTime" /> object</param>
+    /// <returns>Year Month Date string</returns>
+    public static string ToYMDOnlyString(this DateTime value) => value.ToString("yyyyMMdd");
+
+    /// <summary>
+    /// Returns the date in a formatted string without any spaces
+    /// </summary>
+    /// <param name="value">A <see cref="T:System.DateTime" /> object</param>
+    /// <returns>Month Date Year string</returns>
+    public static string ToMDYOnlyString(this DateTime value) => value.ToString("MMddyyyy");
+
+    /// <summary>
+    /// Returns the date in a formatted string without any spaces
+    /// </summary>
+    /// <param name="value">A <see cref="T:System.DateTime" /> object</param>
+    /// <returns>Date Month Year string</returns>
+    public static string ToDMYOnlyString(this DateTime value) => value.ToString("ddMMyyyy");
+
+    /// <summary>
     /// Gets the age of the date provided
     /// </summary>
     /// <param name="value">A <see cref="T:System.DateTime" /> object</param>
@@ -388,7 +409,7 @@ public static class DateTimeHelpers
     {
         var retVal = new DateTime((DateTime.Now - value).Ticks).Year - 1;
 
-        return retVal > default(int) ? retVal : default(int);
+        return retVal > default(int) ? retVal : default;
     }
 
     /// <summary>
@@ -396,7 +417,7 @@ public static class DateTimeHelpers
     /// </summary>
     /// <param name="value">A nullable <see cref="T:System.DateTime" /> object</param>
     /// <returns>An interger</returns>
-    public static int GetAge(this DateTime? value) => value.HasValue ? value.Value.GetAge() : default(int);
+    public static int GetAge(this DateTime? value) => value.HasValue ? value.Value.GetAge() : default;
 
     /// <summary>
     /// Gets the age of the date provided using UTC
@@ -410,7 +431,7 @@ public static class DateTimeHelpers
     /// </summary>
     /// <param name="value">A nullable <see cref="T:System.DateTime" /> object</param>
     /// <returns>An interger</returns>
-    public static int GetAgeUtc(this DateTime? value) => value.HasValue ? value.Value.GetAgeUtc() : default(int);
+    public static int GetAgeUtc(this DateTime? value) => value.HasValue ? value.Value.GetAgeUtc() : default;
 
     /// <summary>
     /// Sets the <see cref="T:System.DateTime" /> object to midnight

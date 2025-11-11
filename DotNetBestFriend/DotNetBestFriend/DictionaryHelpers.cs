@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace DotNetBestFriend;
+﻿namespace DotNetBestFriend;
 
 public static class DictionaryHelpers
 {
@@ -14,8 +11,21 @@ public static class DictionaryHelpers
     /// <param name="keyValuePairs">IDictionary object</param>
     /// <param name="key">Key value</param>
     /// <returns>True if the TKey exists in the dictionary and the value is the default value of TValue</returns>
-    public static bool ContainsKeyAndNotDefault<TKey, TValue>(this IDictionary<TKey, TValue>? keyValuePairs, TKey key) =>
-        keyValuePairs is not null && keyValuePairs.ContainsKey(key) && !keyValuePairs[key].Equals(default(TValue));
+    public static bool ContainsKeyAndNotDefault<TKey, TValue>(this IDictionary<TKey, TValue>? keyValuePairs, TKey key)
+    {
+        if (keyValuePairs.IsNotNullOrEmpty() && keyValuePairs.ContainsKey(key))
+        {
+            var val = keyValuePairs.SafeGetValue(key);
+
+            if (val is not null)
+            {
+                return val.Equals(default(TValue)); 
+            }
+        }  
+
+        return false;    
+    }
+
 
     /// <summary>
     /// Gets a value from the dictionary regardless of null collection object
@@ -25,11 +35,11 @@ public static class DictionaryHelpers
     /// <param name="keyValuePairs">IDictionary object</param>
     /// <param name="key">Key value</param>
     /// <returns>The correct value if found, but a default TValue if not found</returns>
-    public static TValue SafeGetValue<TKey, TValue>(this IDictionary<TKey, TValue>? keyValuePairs, TKey key)
+    public static TValue? SafeGetValue<TKey, TValue>(this IDictionary<TKey, TValue>? keyValuePairs, TKey key)
     {
         try
         {
-            return keyValuePairs is not null ? keyValuePairs[key] : default;
+            return keyValuePairs.IsNotNullOrEmpty() ? keyValuePairs[key] : default;
         }
         catch
         {
@@ -79,8 +89,7 @@ public static class DictionaryHelpers
     /// <typeparam name="TValue">Value data type</typeparam>
     /// <param name="keyValuePairs">Dictionary object</param>
     /// <returns>A list of the keys</returns>
-    public static List<TKey> AllKeys<TKey, TValue>(this IDictionary<TKey, TValue>? keyValuePairs) =>
-        keyValuePairs.IsNotNullOrEmpty() ? keyValuePairs.Select(x => x.Key).ToList() : new List<TKey>();
+    public static IEnumerable<TKey> AllKeys<TKey, TValue>(this IDictionary<TKey, TValue>? keyValuePairs) => keyValuePairs.SafeSelect(x => x.Key);
 
     /// <summary>
     /// Grabs a list of the values
@@ -89,7 +98,6 @@ public static class DictionaryHelpers
     /// <typeparam name="TValue">Value data type</typeparam>
     /// <param name="keyValuePairs">Dictionary object</param>
     /// <returns>A list of the values</returns>
-    public static List<TValue> AllValues<TKey, TValue>(this IDictionary<TKey, TValue> keyValuePairs) =>
-        keyValuePairs.IsNotNullOrEmpty() ? keyValuePairs.Select(x => x.Value).ToList() : new List<TValue>();
+    public static IEnumerable<TValue> AllValues<TKey, TValue>(this IDictionary<TKey, TValue>? keyValuePairs) => keyValuePairs.SafeSelect(x => x.Value);
     #endregion
 }
