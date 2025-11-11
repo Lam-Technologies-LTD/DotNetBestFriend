@@ -4,9 +4,9 @@ This is a set of APIs for developers to help validate data and build their .NET 
 
 # Technologies & Dependencies
 
-.NET 8 & 9 Class Library
+.NET 8, 9 & 10 Class Library
 
-C# 12 & 13
+C# 12, 13 & 14
 
 # Depreciated Versions
 
@@ -34,9 +34,11 @@ Framework and Core has now been merged into a single unified platform as .NET. T
 
 .NET 9 continues the trend of huge performance improvements, especially for LINQ.
 
+.NET 10 features even faster performance improvements, inclusion of AsyncEnumerable Class as a replacement for System.Linq.Async library, a new way to declare method extensions and a myriad of changes to the C# language syntax
+
 # The purpose of this package
 
-The purpose of this package is to provide a set of simple extension methods for .NET 8 & 9 developers. 
+The purpose of this package is to provide a set of simple extension methods for .NET 8, 9 and 10 developers. 
 
 The library offers convenience for small little coding nuisances by preventing some very common null errors that developers often forget to implement because Microsoft has yet to add these null checks into each of the 3 supported languages themselves or in the Common Intermediate Language.
 
@@ -63,7 +65,7 @@ Most users are NOT computer programmers, so they are unlikely to understand why 
 Let's use a generic list in C# as an example... (Note that this also applies to Visual Basic and F# too)
 
 ```
-List<string> test = null;
+List<string>? test = null;
 
 if (test.Any())
 {
