@@ -4,15 +4,15 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>DotNetBestFriend</PackageId>
-    <Version>5.0.0</Version>
+    <Version>5.0.1</Version>
     <Authors>Laurence Lam</Authors>
     <Company>Lam Technologies LTD</Company>
     <PackageDescription>Convenient extension methods for developers who are awesome enough to target their apps for .NET 8 and beyond</PackageDescription>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageVersion>5.0.0</PackageVersion>
+    <PackageVersion>5.0.1</PackageVersion>
     <Copyright>Lam Technologies LTD</Copyright>
     <Owners>Lam Technologies LTD</Owners>
-    <PackageReleaseNotes>Upgraded to .NET 10, added missing method summaries and added minor DateTime extensions</PackageReleaseNotes>
+    <PackageReleaseNotes>Fixed ToNullableString bug</PackageReleaseNotes>
     <Summary>A bunch of programming tools for quick and safe data validation and manipulation</Summary>
     <Title>DotNetBestFriend</Title>
     <Description>The ultimate toolset for .NET Developers</Description>

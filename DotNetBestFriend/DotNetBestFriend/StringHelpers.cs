@@ -1171,7 +1171,7 @@ public static class StringHelpers
     /// <returns>A string if the object is not null</returns>
     public static string? ToNullableString([AllowNull] this object? value, [NotNullWhen(false)] bool returnNullIfValueIsEmptyString = true)
     {
-        if (value is not null)
+        if (value is null)
             return null;
 
         var retVal = value.ToSafeString();
