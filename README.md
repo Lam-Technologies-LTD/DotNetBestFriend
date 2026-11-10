@@ -1,16 +1,16 @@
 # Dot Net Best Friend
 
-This is a set of APIs for developers to help validate data and build their .NET 8 onwards apps.
+This is a set of APIs for developers to help validate data and build their .NET 10 onwards apps.
 
 # Technologies & Dependencies
 
-.NET 8, 9 & 10 Class Library
+.NET 10 & 11 Class Library
 
-C# 12, 13 & 14
+C# 14 & 15
 
 # Depreciated Versions
 
-.NET 5, 6 & 7
+All versions of .NET before .NET 10
 
 I've decided to omit these because ideally we should be keeping on top of the upgrades or sticking to the LTS releases as much as possible.
 
@@ -30,15 +30,17 @@ Framework and Core has now been merged into a single unified platform as .NET. T
 
 .NET 7 (No Longer Supported) was launched on 8th November 2022 with performance improvements, native AOT compilation, improved ARM and HTTP/3 support.
 
-.NET 8 is the second of the LTS release following the .NET 5 rebranding with further performance improvements, expanded JSON serialization, container size reduction, etc.
+.NET 8 (No Longer Supported) is the second of the LTS release following the .NET 5 rebranding with further performance improvements, expanded JSON serialization, container size reduction, etc.
 
-.NET 9 continues the trend of huge performance improvements, especially for LINQ.
+.NET 9 (No Longer Supported) continues the trend of huge performance improvements, especially for LINQ.
 
-.NET 10 features even faster performance improvements, inclusion of AsyncEnumerable Class as a replacement for System.Linq.Async library, a new way to declare method extensions and a myriad of changes to the C# language syntax
+.NET 10 features even faster performance improvements, inclusion of AsyncEnumerable Class as a replacement for System.Linq.Async library, a new way to declare method extensions and a myriad of changes to the C# language syntax.
+
+.NET 11 improves the runtime async and even more improvements to performance.
 
 # The purpose of this package
 
-The purpose of this package is to provide a set of simple extension methods for .NET 8, 9 and 10 developers. 
+The purpose of this package is to provide a set of simple extension methods for .NET 10 and 11 developers. 
 
 The library offers convenience for small little coding nuisances by preventing some very common null errors that developers often forget to implement because Microsoft has yet to add these null checks into each of the 3 supported languages themselves or in the Common Intermediate Language.
 

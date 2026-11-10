@@ -57,7 +57,7 @@ public static class StringHelpers
     /// </summary>
     /// <param name="sb">StringBuilder object</param>
     /// <returns>Empty string if the object is null</returns>
-    [return: NotNullIfNotNull(nameof(sb))]
+    [return: NotNull]
     public static string ToSafeString(this StringBuilder? sb) => sb is null ? string.Empty : sb.ToString().SafeTrim();
 
     /// <summary>
@@ -67,7 +67,8 @@ public static class StringHelpers
     /// <param name="removeWhitespaces">Trim off any white spaces</param>
     /// <param name="throwOnError">Throws exceptions on errors</param>
     /// <returns>A string with its last character removed</returns>
-    public static string RemoveLastCharacter(this string? value, bool removeWhitespaces = false, bool throwOnError = false) => value.RemoveEndCharacters(1, removeWhitespaces, throwOnError);
+    [return: NotNull]
+    public static string RemoveLastCharacter([NotNullIfNotNull(nameof(value))] this string? value, bool removeWhitespaces = false, bool throwOnError = false) => value.RemoveEndCharacters(1, removeWhitespaces, throwOnError);
 
     /// <summary>
     /// Removes a set amount of characters at the end of the string
@@ -79,6 +80,7 @@ public static class StringHelpers
     /// <returns>A new string with the end characters removed</returns>
     /// <exception cref="ArgumentNullException">The original string is null or white spaces and throwOnError is True</exception>
     /// <exception cref="ArgumentOutOfRangeException">Number of characters to remove are invalid and throwOnError is True</exception>
+    [return: NotNull]
     public static string RemoveEndCharacters(this string? value, int endCharactersToRemove, bool removeWhitespaces = false, bool throwOnError = false)
     {
         if (value.IsNullOrWhiteSpace())
@@ -136,6 +138,7 @@ public static class StringHelpers
     /// <param name="value">The original string</param>
     /// <param name="removeWhitespaces">Trims the string</param>
     /// <returns>A new string in camelCase</returns>
+    [return: NotNull]
     public static string ToCamelCase(this string? value, bool removeWhitespaces = false)
     {
         if (value.IsNotNullOrWhiteSpace())
@@ -165,6 +168,7 @@ public static class StringHelpers
     /// <param name="throwOnError">Throws an exception on error</param>
     /// <returns>A new string joined together by a delimiter</returns>
     /// <exception cref="ArgumentNullException">Thrown if the collection is null and throwOnError is True</exception>
+    [return: NotNull]
     public static string ToSeperatedString<T>(this IEnumerable<T>? collection, string? seperator, bool throwOnError = false)
     {
         if (collection.IsNullOrEmpty() || seperator is null)
@@ -186,6 +190,7 @@ public static class StringHelpers
     /// <param name="collection">List of objects</param>
     /// <param name="throwOnError">Throws an exception on error</param>
     /// <returns>A comma seperated string</returns>
+    [return: NotNull]
     public static string ToCommaSeperatedString<T>(this IEnumerable<T>? collection, bool throwOnError = false) => collection.ToSeperatedString(",", throwOnError);
 
     /// <summary>
@@ -193,6 +198,7 @@ public static class StringHelpers
     /// </summary>
     /// <param name="value">The original string</param>
     /// <returns>A trimmed string is not null. An empty string if null or white spaces</returns>
+    [return: NotNull]
     public static string SafeTrim(this string? value) => !string.IsNullOrWhiteSpace(value) ? value.Trim() : string.Empty;
 
     /// <summary>
@@ -204,6 +210,7 @@ public static class StringHelpers
     /// <returns>A string with the captial letters seperated</returns>
     /// <exception cref="ArgumentNullException">If the string is null or white spaces and throwOnError is True</exception>
     /// <exception cref="Exception">If there are no capital letters in the string and throwOnError is True</exception>
+    [return: NotNull]
     public static string SeperateCapitalLetters(this string? value, bool removeWhitespaces = false, bool throwOnError = false)
     {
         if (value.IsNullOrWhiteSpace())
@@ -248,6 +255,7 @@ public static class StringHelpers
     /// <param name="value">The original string</param>
     /// <param name="removeWhitespaces">Remove any whitespaces</param>
     /// <returns>A new string with a the first letter in upper case</returns>
+    [return: NotNull]
     public static string SetFirstLetterToUpperCase(this string? value, bool removeWhitespaces = false)
     {
         if (value.IsNotNullOrWhiteSpace())
@@ -594,7 +602,7 @@ public static class StringHelpers
     /// <param name="value">The original string</param>
     /// <param name="throwOnError">Throw exception on error</param>
     /// <returns>A byte</returns>
-    public static byte ToByte([AllowNull] this object? value, bool throwOnError = false) => value.ToNullableByte(throwOnError).GetValueOrDefault();
+    public static byte ToByte([NotNullIfNotNull(nameof(value))] this object? value, bool throwOnError = false) => value.ToNullableByte(throwOnError).GetValueOrDefault();
 
     /// <summary>
     /// Converts the string to a nullable byte (8 bit number)

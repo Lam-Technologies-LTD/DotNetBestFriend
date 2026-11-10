@@ -203,82 +203,83 @@ public static class ListHelpers
     public static T? SafeSingleOrDefault<T>(this IEnumerable<T>? source, Func<T, bool> predicate) => source.IsNotNullOrEmpty() ? source.SingleOrDefault(predicate) : default;
     #endregion
 
-    #region String Lists...
-    /// <summary>
-    /// Filters out all the nulls, empty and white spaced strings
-    /// </summary>
-    /// <param name="value">A collection of strings</param>
-    /// <returns>A list of strings without any blank entries</returns>
-    public static IEnumerable<string> NoEmptiesOnly(this IEnumerable<string>? value) => value.IsNotNullOrEmpty() ? value.Where(x => x.IsNotNullOrWhiteSpace()) : Array.Empty<string>();
+    extension (IEnumerable<string>? value)
+    {
+        /// <summary>
+        /// Filters out all the nulls, empty and white spaced strings
+        /// </summary>
+        /// <param name="value">A collection of strings</param>
+        /// <returns>A list of strings without any blank entries</returns>
+        public IEnumerable<string> NoEmptiesOnly() => value.IsNotNullOrEmpty() ? value.Where(x => x.IsNotNullOrWhiteSpace()) : Array.Empty<string>();
 
-    // <summary>
-    /// Filters out all the nulls, empty and white spaced strings and then trims the remaining entries
-    /// </summary>
-    /// <param name="value">A collection of strings</param>
-    /// <returns>A list of trimmed strings without any blank entries</returns>
-    public static IEnumerable<string> NoEmptiesOnlyTrimAll(this IEnumerable<string>? value) => value.NoEmptiesOnly().Select(x => x.SafeTrim());
+        // <summary>
+        /// Filters out all the nulls, empty and white spaced strings and then trims the remaining entries
+        /// </summary>
+        /// <param name="value">A collection of strings</param>
+        /// <returns>A list of trimmed strings without any blank entries</returns>
+        public IEnumerable<string> NoEmptiesOnlyTrimAll() => value.NoEmptiesOnly().Select(x => x.SafeTrim());
 
-    /// <summary>
-    /// Picks the first entry that isn't blank
-    /// </summary>
-    /// <param name="value">A collection of strings</param>
-    /// <returns>The first string of the list that isn't blank</returns>
-    public static string FirstNoEmptiesOnly(this IEnumerable<string>? value) => value.NoEmptiesOnly().FirstOrDefault() ?? string.Empty;
+        /// <summary>
+        /// Picks the first entry that isn't blank
+        /// </summary>
+        /// <param name="value">A collection of strings</param>
+        /// <returns>The first string of the list that isn't blank</returns>
+        public string FirstNoEmptiesOnly() => value.NoEmptiesOnly().FirstOrDefault() ?? string.Empty;
 
-    /// <summary>
-    /// Picks the last entry that isn't blank
-    /// </summary>
-    /// <param name="value">A collection of strings</param>
-    /// <returns>The last string of the list that isn't blank</returns>
-    public static string LastNoEmptiesOnly(this IEnumerable<string>? value) => value.NoEmptiesOnly().LastOrDefault() ?? string.Empty;
+        /// <summary>
+        /// Picks the last entry that isn't blank
+        /// </summary>
+        /// <param name="value">A collection of strings</param>
+        /// <returns>The last string of the list that isn't blank</returns>
+        public string LastNoEmptiesOnly() => value.NoEmptiesOnly().LastOrDefault() ?? string.Empty;
 
-    /// <summary>
-    /// Picks the first entry that isn't blank
-    /// </summary>
-    /// <param name="value">A collection of strings</param>
-    /// <param name="predicate">Normal predicate function for FirstOrDefault()</param>
-    /// <returns>The first string of the list that isn't blank</returns>
-    public static string FirstNoEmptiesOnly(this IEnumerable<string>? value, Func<string, bool> predicate) => value.NoEmptiesOnly().FirstOrDefault(predicate) ?? string.Empty;
+        /// <summary>
+        /// Picks the first entry that isn't blank
+        /// </summary>
+        /// <param name="value">A collection of strings</param>
+        /// <param name="predicate">Normal predicate function for FirstOrDefault()</param>
+        /// <returns>The first string of the list that isn't blank</returns>
+        public string FirstNoEmptiesOnly(Func<string, bool> predicate) => value.NoEmptiesOnly().FirstOrDefault(predicate) ?? string.Empty;
 
-    /// <summary>
-    /// Picks the last entry that isn't blank
-    /// </summary>
-    /// <param name="value">A collection of strings</param>
-    /// <param name="predicate">Normal predicate function for LastOrDefault()</param>
-    /// <returns>The last string of the list that isn't blank</returns>
-    public static string LastNoEmptiesOnly(this IEnumerable<string>? value, Func<string, bool> predicate) => value.NoEmptiesOnly().LastOrDefault(predicate) ?? string.Empty;
+        /// <summary>
+        /// Picks the last entry that isn't blank
+        /// </summary>
+        /// <param name="value">A collection of strings</param>
+        /// <param name="predicate">Normal predicate function for LastOrDefault()</param>
+        /// <returns>The last string of the list that isn't blank</returns>
+        public string LastNoEmptiesOnly(Func<string, bool> predicate) => value.NoEmptiesOnly().LastOrDefault(predicate) ?? string.Empty;
 
-    /// <summary>
-    /// Picks the first entry that isn't blank trimmed
-    /// </summary>
-    /// <param name="value">A collection of strings</param>
-    /// <returns>The first string of the list that isn't blank with the whitespaces on both ends removed</returns>
-    public static string FirstNoEmptiesOnlyTrimmed(this IEnumerable<string>? value) => value.FirstNoEmptiesOnly().SafeTrim();
+        /// <summary>
+        /// Picks the first entry that isn't blank trimmed
+        /// </summary>
+        /// <param name="value">A collection of strings</param>
+        /// <returns>The first string of the list that isn't blank with the whitespaces on both ends removed</returns>
+        public string FirstNoEmptiesOnlyTrimmed() => value.FirstNoEmptiesOnly().SafeTrim();
 
-    /// <summary>
-    /// Picks the last entry that isn't blank trimmed
-    /// </summary>
-    /// <param name="value">A collection of strings</param>
-    /// <returns>The last string of the list that isn't blank with the whitespaces on both ends removed</returns>
-    public static string LastNoEmptiesOnlyTrimmed(this IEnumerable<string>? value) => value.LastNoEmptiesOnly().SafeTrim();
+        /// <summary>
+        /// Picks the last entry that isn't blank trimmed
+        /// </summary>
+        /// <param name="value">A collection of strings</param>
+        /// <returns>The last string of the list that isn't blank with the whitespaces on both ends removed</returns>
+        public string LastNoEmptiesOnlyTrimmed() => value.LastNoEmptiesOnly().SafeTrim();
 
-    /// <summary>
-    /// Picks the first entry that isn't blank trimmed
-    /// </summary>
-    /// <param name="value">A collection of strings</param>
-    /// /// <param name="predicate">Normal predicate function for FirstOrDefault()</param>
-    /// <returns>The first string of the list that isn't blank with the whitespaces on both ends removed</returns>
-    public static string FirstNoEmptiesOnlyTrimmed(this IEnumerable<string>? value, Func<string, bool> predicate) => value.FirstNoEmptiesOnly(predicate).SafeTrim();
+        /// <summary>
+        /// Picks the first entry that isn't blank trimmed
+        /// </summary>
+        /// <param name="value">A collection of strings</param>
+        /// /// <param name="predicate">Normal predicate function for FirstOrDefault()</param>
+        /// <returns>The first string of the list that isn't blank with the whitespaces on both ends removed</returns>
+        public string FirstNoEmptiesOnlyTrimmed(Func<string, bool> predicate) => value.FirstNoEmptiesOnly(predicate).SafeTrim();
 
-    /// <summary>
-    /// Picks the last entry that isn't blank trimmed
-    /// </summary>
-    /// <param name="value">A collection of strings</param>
-    /// /// <param name="predicate">Normal predicate function for LastOrDefault()</param>
-    /// <returns>The last string of the list that isn't blank with the whitespaces on both ends removed</returns>
-    public static string LastNoEmptiesOnlyTrimmed(this IEnumerable<string>? value, Func<string, bool> predicate) => value.LastNoEmptiesOnly(predicate).SafeTrim();
-    #endregion
-
+        /// <summary>
+        /// Picks the last entry that isn't blank trimmed
+        /// </summary>
+        /// <param name="value">A collection of strings</param>
+        /// /// <param name="predicate">Normal predicate function for LastOrDefault()</param>
+        /// <returns>The last string of the list that isn't blank with the whitespaces on both ends removed</returns>
+        public string LastNoEmptiesOnlyTrimmed(Func<string, bool> predicate) => value.LastNoEmptiesOnly(predicate).SafeTrim();
+    }
+    
     #region Misc...
     /// <summary>
     /// Creates a paged content of a list
@@ -376,116 +377,160 @@ public static class ListHelpers
     }
     #endregion
 
-    #region SafeSum...
-    /// <summary>
-    /// Checks if an instance is null before adding up all the numbers in the list
-    /// </summary>
-    /// <param name="source">A collection of integers</param>
-    /// <returns>An interger that is sum of everything in the list</returns>
-    public static int SafeSum(this IEnumerable<int>? source) => source.IsNotNullOrEmpty() ? source.Sum() : default;
+    extension(IEnumerable<int>? source)
+    {
+        /// <summary>
+        /// Checks if an instance is null before adding up all the numbers in the list
+        /// </summary>
+        /// <param name="source">A collection of integers</param>
+        /// <returns>An interger that is sum of everything in the list</returns>
+        public int SafeSum() => source.IsNotNullOrEmpty() ? source.Sum() : default;
 
-    /// <summary>
-    /// Checks if an instance is null before adding up all the numbers in the list
-    /// </summary>
-    /// <param name="source">A collection of 64-bit integers</param>
-    /// <returns>A 64-bit that is sum of everything in the list</returns>
-    public static long SafeSum(this IEnumerable<long>? source) => source.IsNotNullOrEmpty() ? source.Sum() : default;
+        /// <summary>
+        /// Checks if an instance is null before choosing the lowest number in the list
+        /// </summary>
+        /// <param name="source">A collection of integers</param>
+        /// <returns>The lowest value</returns>
+        public int SafeMin() => source.IsNotNullOrEmpty() ? source.Sum() : default;
 
-    /// <summary>
-    /// Checks if an instance is null before adding up all the numbers in the list
-    /// </summary>
-    /// <param name="source">A collection of decimal numbers</param>
-    /// <returns>A decimal that is sum of everything in the list</returns>
-    public static decimal SafeSum(this IEnumerable<decimal>? source) => source.IsNotNullOrEmpty() ? source.Sum() : default;
+        /// <summary>
+        /// Checks if an instance is null before choosing the highest number in the list
+        /// </summary>
+        /// <param name="source">A collection of integers</param>
+        /// <returns>The highest value</returns>
+        public int SafeMax() => source.IsNotNullOrEmpty() ? source.Max() : default;
 
-    /// <summary>
-    /// Checks if an instance is null before adding up all the numbers in the list
-    /// </summary>
-    /// <param name="source">A collection of floating point numbers</param>
-    /// <returns>A float that is sum of everything in the list</returns>
-    public static float SafeSum(this IEnumerable<float>? source) => source.IsNotNullOrEmpty() ? source.Sum() : default;
+        /// <summary>
+        /// Applies an accumulator function over a sequence.
+        /// </summary>
+        /// <param name="func">An accumulator function to be invoked on each element.</param>
+        /// <returns>An aggregated value</returns>
+        public int SafeAggregate(Func<int, int, int> func) => source.IsNotNullOrEmpty() ? source.Aggregate(func) : default;
+    }
 
-    /// <summary>
-    /// Checks if an instance is null before adding up all the numbers in the list
-    /// </summary>
-    /// <param name="source">A collection of double precision number</param>
-    /// <returns>A double that is sum of everything in the list</returns>
-    public static double SafeSum(this IEnumerable<double>? source) => source.IsNotNullOrEmpty() ? source.Sum() : default;
-    #endregion
+    extension(IEnumerable<long>? source)
+    {
+        /// <summary>
+        /// Checks if an instance is null before adding up all the numbers in the list
+        /// </summary>
+        /// <param name="source">A collection of 64-bit integers</param>
+        /// <returns>A 64-bit that is sum of everything in the list</returns>
+        public long SafeSum() => source.IsNotNullOrEmpty() ? source.Sum() : default;
 
-    #region SafeMin...
-    /// <summary>
-    /// Checks if an instance is null before choosing the lowest number in the list
-    /// </summary>
-    /// <param name="source">A collection of integers</param>
-    /// <returns>The lowest value</returns>
-    public static int SafeMin(this IEnumerable<int>? source) => source.IsNotNullOrEmpty() ? source.Sum() : default;
+        /// <summary>
+        /// Checks if an instance is null before choosing the lowest number in the list
+        /// </summary>
+        /// <param name="source">A collection of 64-bit integers</param>
+        /// <returns>The lowest value</returns>
+        public long SafeMin() => source.IsNotNullOrEmpty() ? source.Min() : default;
 
-    /// <summary>
-    /// Checks if an instance is null before choosing the lowest number in the list
-    /// </summary>
-    /// <param name="source">A collection of 64-bit integers</param>
-    /// <returns>The lowest value</returns>
-    public static long SafeMin(this IEnumerable<long>? source) => source.IsNotNullOrEmpty() ? source.Min() : default;
+        /// <summary>
+        /// Checks if an instance is null before choosing the highest number in the list
+        /// </summary>
+        /// <param name="source">A collection of 64-bit integers</param>
+        /// <returns>The highest value</returns>
+        public long SafeMax() => source.IsNotNullOrEmpty() ? source.Max() : default;
 
-    /// <summary>
-    /// Checks if an instance is null before choosing the lowest number in the list
-    /// </summary>
-    /// <param name="source">A collection of decimal numbers</param>
-    /// <returns>The lowest value</returns>
-    public static decimal SafeMin(this IEnumerable<decimal>? source) => source.IsNotNullOrEmpty() ? source.Min() : default;
+        /// <summary>
+        /// Applies an accumulator function over a sequence.
+        /// </summary>
+        /// <param name="func">An accumulator function to be invoked on each element.</param>
+        /// <returns>An aggregated value</returns>
+        public long SafeAggregate(Func<long, long, long> func) => source.IsNotNullOrEmpty() ? source.Aggregate(func) : default;
+    }
 
-    /// <summary>
-    /// Checks if an instance is null before choosing the lowest number in the list
-    /// </summary>
-    /// <param name="source">A collection of floating point numbers</param>
-    /// <returns>The lowest value</returns>
-    public static float SafeMin(this IEnumerable<float>? source) => source.IsNotNullOrEmpty() ? source.Min() : default;
+    extension (IEnumerable<decimal>? source)
+    {
+        /// <summary>
+        /// Checks if an instance is null before adding up all the numbers in the list
+        /// </summary>
+        /// <param name="source">A collection of decimal numbers</param>
+        /// <returns>A decimal that is sum of everything in the list</returns>
+        public decimal SafeSum() => source.IsNotNullOrEmpty() ? source.Sum() : default;
 
-    /// <summary>
-    /// Checks if an instance is null before choosing the lowest number in the list
-    /// </summary>
-    /// <param name="source">A collection of double precision number</param>
-    /// <returns>The lowest value</returns>
-    public static double SafeMin(this IEnumerable<double>? source) => source.IsNotNullOrEmpty() ? source.Min() : default;
-    #endregion
+        /// <summary>
+        /// Checks if an instance is null before choosing the lowest number in the list
+        /// </summary>
+        /// <param name="source">A collection of decimal numbers</param>
+        /// <returns>The lowest value</returns>
+        public decimal SafeMin() => source.IsNotNullOrEmpty() ? source.Min() : default;
 
-    #region SafeMax...
-    /// <summary>
-    /// Checks if an instance is null before choosing the highest number in the list
-    /// </summary>
-    /// <param name="source">A collection of integers</param>
-    /// <returns>The highest value</returns>
-    public static int SafeMax(this IEnumerable<int>? source) => source.IsNotNullOrEmpty() ? source.Max() : default;
+        /// <summary>
+        /// Checks if an instance is null before choosing the highest number in the list
+        /// </summary>
+        /// <param name="source">A collection of decimal numbers</param>
+        /// <returns>The highest value</returns>
+        public decimal SafeMax() => source.IsNotNullOrEmpty() ? source.Max() : default;
 
-    /// <summary>
-    /// Checks if an instance is null before choosing the highest number in the list
-    /// </summary>
-    /// <param name="source">A collection of 64-bit integers</param>
-    /// <returns>The highest value</returns>
-    public static long SafeMax(this IEnumerable<long>? source) => source.IsNotNullOrEmpty() ? source.Max() : default;
+        /// <summary>
+        /// Applies an accumulator function over a sequence.
+        /// </summary>
+        /// <param name="func">An accumulator function to be invoked on each element.</param>
+        /// <returns>An aggregated value</returns>
+        public decimal SafeAggregate(Func<decimal, decimal, decimal> func) => source.IsNotNullOrEmpty() ? source.Aggregate(func) : default;
+    }
 
-    /// <summary>
-    /// Checks if an instance is null before choosing the highest number in the list
-    /// </summary>
-    /// <param name="source">A collection of decimal numbers</param>
-    /// <returns>The highest value</returns>
-    public static decimal SafeMax(this IEnumerable<decimal>? source) => source.IsNotNullOrEmpty() ? source.Max() : default;
+    extension(IEnumerable<float>? source)
+    {
+        /// <summary>
+        /// Checks if an instance is null before adding up all the numbers in the list
+        /// </summary>
+        /// <param name="source">A collection of floating point numbers</param>
+        /// <returns>A float that is sum of everything in the list</returns>
+        public float SafeSum() => source.IsNotNullOrEmpty() ? source.Sum() : default;
 
-    /// <summary>
-    /// Checks if an instance is null before choosing the highest number in the list
-    /// </summary>
-    /// <param name="source">A collection of floating point numbers</param>
-    /// <returns>The highest value</returns>
-    public static float SafeMax(this IEnumerable<float>? source) => source.IsNotNullOrEmpty() ? source.Max() : default;
+        /// <summary>
+        /// Checks if an instance is null before choosing the lowest number in the list
+        /// </summary>
+        /// <param name="source">A collection of floating point numbers</param>
+        /// <returns>The lowest value</returns>
+        public float SafeMin() => source.IsNotNullOrEmpty() ? source.Min() : default;
 
-    /// <summary>
-    /// Checks if an instance is null before choosing the highest number in the list
-    /// </summary>
-    /// <param name="source">A collection of double precision number</param>
-    /// <returns>The highest value</returns>
-    public static double SafeMax(this IEnumerable<double>? source) => source.IsNotNullOrEmpty() ? source.Max() : default;
-    #endregion
+        /// <summary>
+        /// Checks if an instance is null before choosing the highest number in the list
+        /// </summary>
+        /// <param name="source">A collection of floating point numbers</param>
+        /// <returns>The highest value</returns>
+        public float SafeMax() => source.IsNotNullOrEmpty() ? source.Max() : default;
+
+        /// <summary>
+        /// Applies an accumulator function over a sequence.
+        /// </summary>
+        /// <param name="func">An accumulator function to be invoked on each element.</param>
+        /// <returns>An aggregated value</returns>
+        public float SafeAggregate(Func<float, float, float> func) => source.IsNotNullOrEmpty() ? source.Aggregate(func) : default;
+    }
+
+    extension(IEnumerable<double>? source)
+    {
+        /// <summary>
+        /// Checks if an instance is null before adding up all the numbers in the list
+        /// </summary>
+        /// <param name="source">A collection of double precision number</param>
+        /// <returns>A double that is sum of everything in the list</returns>
+        public double SafeSum() => source.IsNotNullOrEmpty() ? source.Sum() : default;
+
+        /// <summary>
+        /// Checks if an instance is null before choosing the lowest number in the list
+        /// </summary>
+        /// <param name="source">A collection of double precision number</param>
+        /// <returns>The lowest value</returns>
+        public double SafeMin() => source.IsNotNullOrEmpty() ? source.Min() : default;
+
+        /// <summary>
+        /// Checks if an instance is null before choosing the highest number in the list
+        /// </summary>
+        /// <param name="source">A collection of double precision number</param>
+        /// <returns>The highest value</returns>
+        public double SafeMax() => source.IsNotNullOrEmpty() ? source.Max() : default;
+
+        /// <summary>
+        /// Applies an accumulator function over a sequence.
+        /// </summary>
+        /// <param name="func">An accumulator function to be invoked on each element.</param>
+        /// <returns>An aggregated value</returns>
+        public double SafeAggregate(Func<double, double, double> func) => source.IsNotNullOrEmpty() ? source.Aggregate(func) : default;
+    }
     #endregion
 
     #region ICollection...

@@ -2,7 +2,6 @@
 
 public static class DictionaryHelpers
 {
-    #region IDictionary
     /// <summary>
     /// Checks if a key exists and is not the default value
     /// </summary>
@@ -25,7 +24,6 @@ public static class DictionaryHelpers
 
         return false;    
     }
-
 
     /// <summary>
     /// Gets a value from the dictionary regardless of null collection object
@@ -99,5 +97,4 @@ public static class DictionaryHelpers
     /// <param name="keyValuePairs">Dictionary object</param>
     /// <returns>A list of the values</returns>
     public static IEnumerable<TValue> AllValues<TKey, TValue>(this IDictionary<TKey, TValue>? keyValuePairs) => keyValuePairs.SafeSelect(x => x.Value);
-    #endregion
 }
