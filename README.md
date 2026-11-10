@@ -1,6 +1,6 @@
 # Dot Net Best Friend
 
-This is a set of APIs for developers to help validate data and build their .NET 10 onwards apps.
+This is a set of method extensions for developers to help validate data and build their .NET 10 onwards apps.
 
 # Technologies & Dependencies
 
@@ -158,7 +158,7 @@ if (test.IsNotNullOrEmpty()) // << Will not throw an error! xD
 
 By bringing in the DotNetBestFriend namespace, you now have some access to the IsNotNullOrEmpty method, which can save your behind if you use frequently use collections.
 
-# What APIs are available?
+# What extensions are available?
 
 So far I've added helpers for the most frequently used data types from the various projects I've worked on over the years:
 
